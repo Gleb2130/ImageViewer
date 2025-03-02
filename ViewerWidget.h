@@ -6,9 +6,12 @@ private:
 	QSize areaSize = QSize(0, 0);
 	QImage* img = nullptr;
 	QPainter* painter = nullptr;
+	uchar* data = nullptr;
 
-	bool freeDrawActivated = false;
-	QPoint freeDrawBegin = QPoint(0, 0);
+	bool ActivatedFlag = false;
+	QPoint beginPoint = QPoint(0, 0);
+
+	int mode = 0;
 
 public:
 	ViewerWidget(QSize imgSize, QWidget* parent = Q_NULLPTR);
@@ -23,10 +26,10 @@ public:
 
 	//Draw functions
 	void freeDraw(QPoint end, QPen pen);
-	void setFreeDrawBegin(QPoint begin) { freeDrawBegin = begin; }
-	QPoint getFreeDrawBegin() { return freeDrawBegin; }
-	void setFreeDrawActivated(bool state) { freeDrawActivated = state; }
-	bool getFreeDrawActivated() { return freeDrawActivated; }
+	void setBegin(QPoint begin) { beginPoint = begin; }
+	QPoint getBegin() { return beginPoint; }
+	void setActivatedFlag(bool state) { ActivatedFlag = state; }
+	bool getActivatedFlag() { return ActivatedFlag; }
 
 	//Get/Set functions
 	void setPainter() { painter = new QPainter(img); }
@@ -34,10 +37,23 @@ public:
 	int getImgWidth() { return img->width(); };
 	int getImgHeight() { return img->height(); };
 
-	void clear();
+	uchar* getData() { return data; }
+	void setDataPtr() { data = img->bits(); }
 
-	void drawHelloWorld();
-	void drawGraf(int graf, int gType, int delenie, int N);
+	void clear(int delenie);
+
+	//void drawHelloWorld();
+	void drawGraf(int graf, int gType, int N,QColor color);
+	void drawAxis(int delenie);
+	void drawCircle(const QPoint begin, const QPoint end, const QColor color);
+
+	void drawLine(QPoint begin, QPoint end, QColor color,int algType);
+	void setPixel(int x, int y, const QColor& color);
+	void setPixel(int x, int y, double valR, double valG, double valB, double valA);
+	void setPixel(int x, int y, uchar r, uchar g, uchar b, uchar a);
+
+	void setMode(int m) { mode = m; }
+	int getMode() { return mode; }
 
 
 public slots:

@@ -16,6 +16,17 @@ ImageViewer::ImageViewer(QWidget* parent)
 	ui->spinBox_2->setValue(20);
 	vW->setObjectName("ViewerWidget");
 	vW->installEventFilter(this);
+
+
+	connect(ui->spinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &ImageViewer::onSpinBoxValueChanged);
+
+	onSpinBoxValueChanged();
+	on_paintButton_clicked();
+}
+
+void ImageViewer::onSpinBoxValueChanged()
+{
+	vW->clear(ui->spinBox->value());
 }
 
 // Event filters
@@ -35,50 +46,83 @@ bool ImageViewer::ViewerWidgetEventFilter(QObject* obj, QEvent* event)
 	if (!w) {
 		return false;
 	}
-
-	if (event->type() == QEvent::MouseButtonPress) {
-		ViewerWidgetMouseButtonPress(w, event);
-	}
-	else if (event->type() == QEvent::MouseButtonRelease) {
-		ViewerWidgetMouseButtonRelease(w, event);
-	}
-	else if (event->type() == QEvent::MouseMove) {
-		ViewerWidgetMouseMove(w, event);
-	}
-	else if (event->type() == QEvent::Leave) {
-		ViewerWidgetLeave(w, event);
-	}
-	else if (event->type() == QEvent::Enter) {
-		ViewerWidgetEnter(w, event);
-	}
-	else if (event->type() == QEvent::Wheel) {
-		ViewerWidgetWheel(w, event);
-	}
+		if (event->type() == QEvent::MouseButtonPress) {
+			ViewerWidgetMouseButtonPress(w, event);
+		}
+		else if (event->type() == QEvent::MouseButtonRelease) {
+			ViewerWidgetMouseButtonRelease(w, event);
+		}
+		else if (event->type() == QEvent::MouseMove) {
+			ViewerWidgetMouseMove(w, event);
+		}
+		else if (event->type() == QEvent::Leave) {
+			ViewerWidgetLeave(w, event);
+		}
+		else if (event->type() == QEvent::Enter) {
+			ViewerWidgetEnter(w, event);
+		}
+		else if (event->type() == QEvent::Wheel) {
+			ViewerWidgetWheel(w, event);
+		}
 
 	return QObject::eventFilter(obj, event);
 }
+
 void ImageViewer::ViewerWidgetMouseButtonPress(ViewerWidget* w, QEvent* event)
 {
 	QMouseEvent* e = static_cast<QMouseEvent*>(event);
 	if (e->button() == Qt::LeftButton) {
-		w->setFreeDrawBegin(e->pos());
-		w->setFreeDrawActivated(true);
+		switch (w->getMode()) {
+		case 0:
+			w->setBegin(e->pos());
+			w->setActivatedFlag(true);
+			break;
+		case 1:
+			w->setBegin(e->pos());
+			break;
+		case 2: {
+			if (w->getActivatedFlag()) {
+				w->drawCircle(w->getBegin(), e->pos(), globalColor);
+				w->setActivatedFlag(false);
+			}
+			else {
+				w->setBegin(e->pos());
+				w->setActivatedFlag(true);
+			}
+			break;
+			}
+		}
 	}
 }
+
 void ImageViewer::ViewerWidgetMouseButtonRelease(ViewerWidget* w, QEvent* event)
 {
 	QMouseEvent* e = static_cast<QMouseEvent*>(event);
-	if (e->button() == Qt::LeftButton && w->getFreeDrawActivated()) {
-		w->freeDraw(e->pos(), QPen(Qt::red));
-		w->setFreeDrawActivated(false);
+	if (e->button() == Qt::LeftButton) {
+		switch (w->getMode()) {
+		case 0:
+			if (w->getActivatedFlag()) {
+				w->freeDraw(e->pos(), QPen(globalColor));
+				w->setActivatedFlag(false);
+			}
+			break;
+		case 1:
+			w->drawLine(w->getBegin(), e->pos(), globalColor, ui->comboBoxLineAlg->currentIndex());
+			break;
+		}
 	}
 }
 void ImageViewer::ViewerWidgetMouseMove(ViewerWidget* w, QEvent* event)
 {
 	QMouseEvent* e = static_cast<QMouseEvent*>(event);
-	if (e->buttons() == Qt::LeftButton && w->getFreeDrawActivated()) {
-		w->freeDraw(e->pos(), QPen(Qt::red));
-		w->setFreeDrawBegin(e->pos());
+	if (e->buttons() == Qt::LeftButton && w->getActivatedFlag()) {
+		switch (w->getMode()){
+			case 0: {
+			w->freeDraw(e->pos(), QPen(globalColor));
+			w->setBegin(e->pos());
+			break;
+			}
+		}
 	}
 }
 void ImageViewer::ViewerWidgetLeave(ViewerWidget* w, QEvent* event)
@@ -163,22 +207,22 @@ void ImageViewer::on_actionSave_as_triggered()
 }
 void ImageViewer::on_actionClear_triggered()
 {
-	vW->clear();
+	vW->clear(ui->spinBox->value());
 }
 void ImageViewer::on_actionExit_triggered()
 {
 	this->close();
 }
 
-void ImageViewer::on_pushButtonHello_clicked()
-{
-	vW->drawHelloWorld();
-}
+//void ImageViewer::on_pushButtonHello_clicked()
+//{
+//	vW->drawHelloWorld();
+//}
 
 
 void ImageViewer::on_pushButtonVymazat_clicked()
 {
-	vW->clear();
+	vW->clear(ui->spinBox->value());
 }
 
 void ImageViewer::on_pushButtonKreslit_clicked()
@@ -192,9 +236,41 @@ void ImageViewer::on_pushButtonKreslit_clicked()
 		tGraf = 1;
 	else if (ui->radioButton_3->isChecked())
 		tGraf = 2;
-
-	int delenie = ui->spinBox->value();
 	int N = ui->spinBox_2->value();
 
-	vW->drawGraf(graf, tGraf, delenie, N);
+	vW->drawGraf(graf, tGraf ,N,globalColor);
+}
+
+void ImageViewer::on_paintButton_clicked()
+{
+	vW->setMode(0);
+	ui->paintButton->setEnabled(false);
+	ui->circleButton->setEnabled(true);
+	ui->lineButton->setEnabled(true);
+}
+
+void ImageViewer::on_lineButton_clicked()
+{
+	vW->setMode(1);
+	ui->paintButton->setEnabled(true);
+	ui->circleButton->setEnabled(true);
+	ui->lineButton->setEnabled(false);
+}
+
+void ImageViewer::on_circleButton_clicked()
+{
+	vW->setMode(2);
+	ui->paintButton->setEnabled(true);
+	ui->lineButton->setEnabled(true);
+	ui->circleButton->setEnabled(false);
+}
+
+void ImageViewer::on_pushButtonSetColor_clicked()
+{
+	QColor newColor = QColorDialog::getColor(globalColor, this);
+	if (newColor.isValid()) {
+		QString style_sheet = QString("background-color: #%1;").arg(newColor.rgba(), 0, 16);
+		ui->pushButtonSetColor->setStyleSheet(style_sheet);
+		globalColor = newColor;
+	}
 }

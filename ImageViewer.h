@@ -18,6 +18,7 @@ private:
 
 	QSettings settings;
 	QMessageBox msgBox;
+	QColor globalColor = Qt::black;
 
 	//Event filters
 	bool eventFilter(QObject* obj, QEvent* event);
@@ -44,8 +45,16 @@ private slots:
 	void on_actionClear_triggered();
 	void on_actionExit_triggered();
 
-	void on_pushButtonHello_clicked();
+	//void on_pushButtonHello_clicked();
+	void on_circleButton_clicked();
 	void on_pushButtonKreslit_clicked();
 	void on_pushButtonVymazat_clicked();
+
+	void on_paintButton_clicked();
+	void on_lineButton_clicked();
+
+	void on_pushButtonSetColor_clicked();
+
+	void onSpinBoxValueChanged();
 
 };
