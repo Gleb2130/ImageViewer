@@ -12,8 +12,10 @@ private:
 	QPoint beginPoint = QPoint(0, 0);
 
 	int mode = 0;
+	int mode2 = 0;
 
 public:
+	ViewerWidget() {};
 	ViewerWidget(QSize imgSize, QWidget* parent = Q_NULLPTR);
 	~ViewerWidget();
 	void resizeWidget(QSize size);
@@ -47,13 +49,20 @@ public:
 	void drawAxis(int delenie);
 	void drawCircle(const QPoint begin, const QPoint end, const QColor color);
 
+
 	void drawLine(QPoint begin, QPoint end, QColor color,int algType);
 	void setPixel(int x, int y, const QColor& color);
 	void setPixel(int x, int y, double valR, double valG, double valB, double valA);
 	void setPixel(int x, int y, uchar r, uchar g, uchar b, uchar a);
+	QColor getPixel(int x, int y);
 
 	void setMode(int m) { mode = m; }
 	int getMode() { return mode; }
+
+	void setMode2(int m) { mode2 = m; }
+	int getMode2() { return mode2; }
+
+	QSize getImgSize() { return img->size(); }
 
 
 public slots:

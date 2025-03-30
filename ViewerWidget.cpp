@@ -97,37 +97,39 @@ void ViewerWidget::drawGraf(int graf, int gType, int N, QColor color)
 {
 	painter->save();
 
-	float xMin = -M_PI;
-	float xMax = M_PI;
+	float xMin = -2 * M_PI;
+	float xMax = 2 * M_PI;
 	float xStep = (xMax - xMin) / N;
 	QVector<QPointF> points;
+
+	int imgWidth = img->width();
+	int imgHeight = img->height();
 
 	for (int i = 0; i <= N; i++) {
 		float x = xMin + i * xStep;
 		float y = (graf == 0) ? sin(x) : cos(x);
-		float xCanvas = 250 + x * 240 / M_PI;  
-		float yCanvas = 250 - y * 200;        
+
+		float xCanvas = imgWidth / 2 + x * (imgWidth / (2 * M_PI));
+		float yCanvas = imgHeight / 2 - y * (imgHeight / 2);
 		points.append(QPointF(xCanvas, yCanvas));
 	}
-	
 
-
-	if (gType == 0) { // Bodový
+	if (gType == 0) { 
 		painter->setPen(QPen(color, 5));
 		for (const QPointF& point : points) {
 			painter->drawPoint(point);
 		}
 	}
-	else if (gType == 1) { // Čiarový
+	else if (gType == 1) { 
 		painter->setPen(QPen(color, 2));
 		for (int i = 1; i < points.size(); i++) {
 			painter->drawLine(points[i - 1], points[i]);
 		}
 	}
-	else if (gType == 2) { // Stĺpcový
+	else if (gType == 2) { 
 		painter->setPen(QPen(color, 1));
 		for (const QPointF& point : points) {
-			painter->drawLine(point.x(), 250, point.x(), point.y());
+			painter->drawLine(point.x(), imgHeight / 2, point.x(), point.y());
 		}
 	}
 
@@ -135,24 +137,36 @@ void ViewerWidget::drawGraf(int graf, int gType, int N, QColor color)
 	update();
 }
 
+
 void ViewerWidget::drawAxis(int delenie)
 {
-	painter->save();	
+	painter->save();
+
+	int imgWidth = img->width();
+	int imgHeight = img->height();
+
+
+	if (delenie == 0) {
+		return; 
+	}
 
 	painter->setPen(QPen(Qt::black));
-	painter->drawLine(10, 250, 490, 250);
-	painter->drawLine(250, 10, 250, 490);
 
-	float step = 480.0 / delenie;
+	painter->drawLine(10, imgHeight / 2, imgWidth - 10, imgHeight / 2);
+	painter->drawLine(imgWidth / 2, 10, imgWidth / 2, imgHeight - 10); 
+
+	float step = (imgWidth - 20) / delenie;
 
 	for (int i = 0; i <= delenie; i++) {
-		painter->drawLine(i * step + 10, 245, i * step + 10, 255);
-		painter->drawLine(245, i * step + 10, 255, i * step + 10);
+		painter->drawLine(i * step + 10, imgHeight / 2 - 5, i * step + 10, imgHeight / 2 + 5);
+		painter->drawLine(imgWidth / 2 - 5, i * step + 10, imgWidth / 2 + 5, i * step + 10);
 	}
 
 	painter->restore();
 	update();
 }
+
+
 
 
 //void ViewerWidget::drawHelloWorld()
@@ -317,7 +331,7 @@ void ViewerWidget::setPixel(int x, int y, double valR, double valG, double valB,
 }
 void ViewerWidget::setPixel(int x, int y, const QColor& color)
 {
-	if (color.isValid() && x >= 0 && x < img->width() && y >= 0 && y < img->height()) {
+	if (color.isValid()  && x >= 0 && x < img->width() && y >= 0 && y < img->height()) {
 		size_t startbyte = y * img->bytesPerLine() + x * 4;
 
 		data[startbyte] = color.blue();
@@ -325,6 +339,17 @@ void ViewerWidget::setPixel(int x, int y, const QColor& color)
 		data[startbyte + 2] = color.red();
 		data[startbyte + 3] = color.alpha();
 	}
+}
+
+QColor ViewerWidget::getPixel(int x, int y)
+{
+	if (x >= 0 && x < img->width() && y >= 0 && y < img->height()) {
+		size_t startbyte = y * img->bytesPerLine() + x * 4;
+
+		QColor color(data[startbyte], data[startbyte + 1], data[startbyte + 2], data[startbyte + 3]);
+		return color;
+	}
+	return QColor();
 }
 
 void ViewerWidget::drawCircle(const QPoint begin, const QPoint end, const QColor color) {

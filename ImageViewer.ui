@@ -6,40 +6,765 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>818</width>
-    <height>728</height>
+    <width>1659</width>
+    <height>1111</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>ImageViewer</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QScrollArea" name="scrollArea">
-      <property name="widgetResizable">
-       <bool>true</bool>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>1280</x>
+      <y>20</y>
+      <width>371</width>
+      <height>1001</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>201</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Functions</string>
+     </property>
+     <widget class="QPushButton" name="paintButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>90</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
       </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>661</width>
-         <height>648</height>
-        </rect>
-       </property>
-      </widget>
+      <property name="text">
+       <string>Paint</string>
+      </property>
      </widget>
-    </item>
-   </layout>
+     <widget class="QPushButton" name="polygonButton">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>120</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Polygon</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="lineButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>120</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Line</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="circleButton">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>90</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Circle</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBoxLineAlg">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>60</y>
+        <width>81</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>DDA</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Bresenham</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="pushButtonSetColor">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>30</y>
+        <width>81</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>81</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Color:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Line type:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="polyLineButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>150</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PolyLine</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="cubePushButton">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>150</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Cube</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>270</y>
+       <width>201</width>
+       <height>251</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Polygon</string>
+     </property>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>112</y>
+        <width>34</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Angle:</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="polygonAngle">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>134</y>
+        <width>161</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>85</y>
+        <width>30</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Scale:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>185</y>
+        <width>33</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Shear:</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>111</x>
+        <y>212</y>
+        <width>89</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>fillObjButton</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>31</y>
+        <width>16</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>X:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="reflectPushButton">
+      <property name="geometry">
+       <rect>
+        <x>111</x>
+        <y>155</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Reflect</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="shearKoef">
+      <property name="geometry">
+       <rect>
+        <x>111</x>
+        <y>185</y>
+        <width>56</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="reflectType">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>155</y>
+        <width>81</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>horizontal</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>vertical</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>58</y>
+        <width>16</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Y:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="fillMode">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>212</y>
+        <width>84</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Nearest Neighbor</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Barycentrická interpolácia</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Solid color</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QDoubleSpinBox" name="polygonScale">
+      <property name="geometry">
+       <rect>
+        <x>111</x>
+        <y>85</y>
+        <width>56</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="polygonXCords">
+      <property name="geometry">
+       <rect>
+        <x>111</x>
+        <y>31</y>
+        <width>40</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="polygonYCords">
+      <property name="geometry">
+       <rect>
+        <x>111</x>
+        <y>58</y>
+        <width>40</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>520</y>
+       <width>201</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Graf</string>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>168</width>
+        <height>223</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0" colspan="2">
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>Sin</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Cos</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QRadioButton" name="radioButton_2">
+         <property name="text">
+          <string>Čiarový</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QRadioButton" name="radioButton_3">
+         <property name="text">
+          <string>Stĺpcový</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QRadioButton" name="radioButton">
+         <property name="text">
+          <string>Bodový</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QSpinBox" name="spinBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Div</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QSpinBox" name="spinBox_2"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>N</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QPushButton" name="pushButtonKreslit">
+         <property name="text">
+          <string>Draw</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QPushButton" name="pushButtonVymazat">
+         <property name="text">
+          <string>Delete ALL</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>80</y>
+       <width>141</width>
+       <height>701</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Objects</string>
+     </property>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>121</width>
+        <height>621</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="deleteObjButton">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>660</y>
+        <width>121</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Delete</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_8">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>361</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>GroupBox</string>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>331</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>Height:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="screanHeight"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>Width:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="screanWidth"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>20</y>
+      <width>1010</width>
+      <height>1010</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1008</width>
+       <height>1008</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_9">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>211</width>
+      <height>1001</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <widget class="QGroupBox" name="groupBox_7">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>141</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>File</string>
+     </property>
+     <widget class="QPushButton" name="loadFromFile">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>121</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Load</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="saveToFile">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>121</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Save</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>120</y>
+       <width>201</width>
+       <height>151</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Line</string>
+     </property>
+     <widget class="QComboBox" name="lineTypeVec">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>181</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Hermitovská kubika</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Bézierova krivka stupňa n</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Coonsov kubický B-spline</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>171</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>Vector width</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="vectorWidth"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>Vector:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="vectorIndex"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QSpinBox" name="vectorRotateAngel"/>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="rotateAngel">
+         <property name="text">
+          <string>Rotate</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_10">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>270</y>
+       <width>201</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>GroupBox</string>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>171</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>Length</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="cubeLength"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="saveCubeToFile">
+         <property name="text">
+          <string>Save to file</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>818</width>
+     <width>1659</width>
      <height>21</height>
     </rect>
    </property>
@@ -70,193 +795,6 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <widget class="QDockWidget" name="dockWidget">
-   <property name="windowTitle">
-    <string>Tools</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>1</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QGroupBox" name="groupBox">
-       <property name="title">
-        <string>Color</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QPushButton" name="pushButtonSetColor">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="groupBox_2">
-       <property name="title">
-        <string>Draw</string>
-       </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0" colspan="3">
-         <widget class="QComboBox" name="comboBoxLineAlg">
-          <item>
-           <property name="text">
-            <string>DDA</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Bresenham</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="groupBox_4">
-       <property name="title">
-        <string>Functions</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <widget class="QPushButton" name="paintButton">
-            <property name="text">
-             <string>Paint</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="lineButton">
-            <property name="text">
-             <string>Line</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="circleButton">
-            <property name="text">
-             <string>Circle</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="groupBox_3">
-       <property name="title">
-        <string>Graf</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_5">
-        <item>
-         <widget class="QComboBox" name="comboBox">
-          <item>
-           <property name="text">
-            <string>Sin</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Cos</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="radioButton_2">
-          <property name="text">
-           <string>Čiarový</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="radioButton_3">
-          <property name="text">
-           <string>Stĺpcový</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="radioButton">
-          <property name="text">
-           <string>Bodový</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QFormLayout" name="formLayout">
-          <item row="0" column="1">
-           <widget class="QSpinBox" name="spinBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QSpinBox" name="spinBox_2"/>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Div</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>N</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButtonKreslit">
-          <property name="text">
-           <string>Kreslit</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButtonVymazat">
-          <property name="text">
-           <string>Vymazat</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <spacer name="verticalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Orientation::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>113</width>
-         <height>118</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </widget>
-  </widget>
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>

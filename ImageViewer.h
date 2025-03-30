@@ -4,6 +4,9 @@
 #include <QtWidgets>
 #include "ui_ImageViewer.h"
 #include "ViewerWidget.h"
+#include "PolygonWidget.h"
+#include "LineVectorWidget.h"
+#include "CircleWidget.h"
 
 class ImageViewer : public QMainWindow
 {
@@ -15,10 +18,15 @@ public:
 private:
 	Ui::ImageViewerClass* ui;
 	ViewerWidget* vW;
+	//PolygonWidget* pW;
+	vector <PolygonWidget*> pW;
+	int objIndex = 0;
+	bool new_object = false;
 
 	QSettings settings;
 	QMessageBox msgBox;
 	QColor globalColor = Qt::black;
+	
 
 	//Event filters
 	bool eventFilter(QObject* obj, QEvent* event);
@@ -52,9 +60,44 @@ private slots:
 
 	void on_paintButton_clicked();
 	void on_lineButton_clicked();
+	void on_polygonButton_clicked();
+	void on_polyLineButton_clicked();
+	void on_cubePushButton_clicked();
 
 	void on_pushButtonSetColor_clicked();
+	void on_checkBox_stateChanged(int state);
+
+	void on_fillMode_currentIndexChanged(int index);
+	void on_reflectPushButton_clicked();
+	void changeShear(double shear);
+
+	void polygonAngleValueChanged(int value);
+	void polygonYCordsValueChanged(int y);
+	void polygonXCordsValueChanged(int x);
+	void polygonScaleValueChanged(double scale);
+	void drawAllPoly();
+
+	void vectorWidthChanged(int value);
+	void lineTypeVecIndexChanged(int index);
 
 	void onSpinBoxValueChanged();
 
+	void loadObjects();
+
+	void on_tableWidget_cellClicked(int row, int column);
+
+	void on_deleteObjButton_clicked();
+
+	void on_saveToFile_clicked();
+	void on_loadFromFile_clicked();
+
+	void on_screanWidth_valueChanged(int value);
+	void on_screanHeight_valueChanged(int value);
+
+	void on_rotateAngel_clicked();
+
+	void on_saveCubeToFile_clicked();
+
 };
+
+

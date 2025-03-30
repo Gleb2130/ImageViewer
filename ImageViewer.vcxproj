@@ -92,6 +92,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CircleWidget.cpp" />
+    <ClCompile Include="cube3DWidget.cpp" />
+    <ClCompile Include="LineVectorWidget.cpp" />
+    <ClCompile Include="PolygonWidget.cpp" />
     <ClCompile Include="ViewerWidget.cpp" />
     <QtRcc Include="ImageViewer.qrc" />
     <QtUic Include="ImageViewer.ui" />
@@ -101,6 +105,12 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ViewerWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CircleWidget.h" />
+    <ClInclude Include="cube3DWidget.h" />
+    <ClInclude Include="LineVectorWidget.h" />
+    <ClInclude Include="PolygonWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
